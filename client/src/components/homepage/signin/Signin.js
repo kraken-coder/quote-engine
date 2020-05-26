@@ -5,19 +5,19 @@ import { Link } from 'react-router-dom'
 
 
 import { connect } from 'react-redux'
-import { authenticate } from '../../../state/actions/auth'
+import { register } from '../../../state/actions/auth'
 
 // comp
 import HomeNavbar from '../navbar/HomeNavbar'
 
-const Signin = ({authenticate}) => {
+const Signin = ({register}) => {
   const [view, setView] = useState('')
 
   const [login, setLogin] = useState({
 email: '',
 passowrd: ''
   })
-  const [register, setRegister] = useState({
+  const [join, setjoin] = useState({
 email: '',
 name: '',
 password: ''
@@ -41,39 +41,22 @@ password: ''
 
     type === 'login'
     ? setLogin({...login, [name]: value})
-    : setRegister({...register, [name]: value})
+    : setjoin({...join, [name]: value})
       
   }
 
-  
-
   const handleSubmit = e => {
     e.preventDefault()
-    
     const id = e.target.id
 
-    if (id === 'signup') {
-      if (sEmail !== '') {
-        const data = {
-          name: sName,
-          email: sEmail,
-          password: sPassword,
-        }
-
-        console.log(data)
+    if(id === 'join') {
+      const data = join
+      if (data.email !== '' || data.name !== '' || data.password !== "") {
+        register(data)
       }
     } else {
-      if (email !== '') {
-        const data = {
-          email,
-          password,
-        }
-        setEmail('')
-        setPassword('')
-        authenticate()
-        Window.location = '/admin'
-        console.log(data)
-      }
+      const data = login
+
     }
   }
 
@@ -83,7 +66,7 @@ password: ''
       <Wrapper>
         <Container ref={ref} className="container">
           <SignUpContainer className="sign-up-container">
-            <Form id="signup" onSubmit={e => handleSubmit(e)}>
+            <Form id="join" onSubmit={e => handleSubmit(e)}>
               <Title>Create an account</Title>
 
               <Span>Leads management has nevar been easy</Span>
@@ -91,7 +74,7 @@ password: ''
               <Input
                 type="text"
                 placeholder=" Name"
-                value={sName}
+                value={join.name}
                 name="name"
                 onChange={e => handleChange(e, 'join')}
               />
@@ -100,7 +83,7 @@ password: ''
                 type="text"
                 placeholder=" Email"
                 name="email"
-                value={sEmail}
+                value={join.email}
                 onChange={e => handleChange(e, 'join')}
               />
 
@@ -108,14 +91,14 @@ password: ''
                 type="password"
                 placeholder=" Password"
                 name="password"
-                value={sPassword}
+                value={join.password}
                 onChange={e => handleChange(e, 'join')}
               />
               <Button>Sign Up</Button>
             </Form>
           </SignUpContainer>
           <SignInContainer className="sign-in-container">
-            <Form id="signin" onSubmit={e => handleSubmit(e)}>
+            <Form id="login" onSubmit={e => handleSubmit(e)}>
               <Title>Sign IN</Title>
 
               <Span>Login to your account </Span>
@@ -123,7 +106,7 @@ password: ''
               <Input
                 type="text"
                 placeholder=" Email"
-                value={email}
+                value={login.email}
                 name="email"
                 onChange={e => handleChange(e, 'login')}
               />
@@ -131,7 +114,7 @@ password: ''
               <Input
                 type="password"
                 placeholder=" Password"
-                value={password}
+                value={login.password}
                 name="password"
                 onChange={e => handleSignIn(e, 'login')}
               />
@@ -330,7 +313,7 @@ const Overlay = styled.div`
 
 
 const mapDispatchToProps = {
-authenticate  
+register  
 }
 
 

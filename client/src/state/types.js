@@ -1,2 +1,3 @@
 export const AUTH = 'AUTH'
 export const ISAUTHENTICATED = 'ISAUTHENTICATED'
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'

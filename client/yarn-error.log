@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add redux react-reduc thunk
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add axios
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin:/opt/yarn-[version]/bin:/opt/yarn-[version]/bin:/usr/local/go/bin:/home/siradji/go/bin:/opt/yarn-[version]/bin:/usr/local/go/bin:/home/siradji/go/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin:/opt/yarn-[version]/bin:/opt/yarn-[version]/bin:/usr/local/go/bin:/home/siradji/golib/bin:/usr/local/go/bin:/opt/yarn-[version]/bin:/opt/yarn-[version]/bin:/usr/local/go/bin:/home/siradji/golib/bin
 
 Yarn version: 
   1.22.4
@@ -14,17 +14,8 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-reduc: Not found
-      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66987:18)
-      at Request.self.callback (/usr/share/yarn/lib/cli.js:140748:22)
-      at Request.emit (events.js:198:13)
-      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141720:10)
-      at Request.emit (events.js:198:13)
-      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141642:12)
-      at Object.onceWrapper (events.js:286:20)
-      at IncomingMessage.emit (events.js:203:15)
-      at endReadableNT (_stream_readable.js:1145:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com registry.yarnpkg.com:443
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:56:26)
 
 npm manifest: 
   {
@@ -57,15 +48,21 @@ npm manifest:
       "@fortawesome/fontawesome-svg-core": "^1.2.28",
       "@fortawesome/free-solid-svg-icons": "^5.13.0",
       "@fortawesome/react-fontawesome": "fortawesome/react-fontawesome",
+      "clsx": "^1.1.0",
       "dotenv-webpack": "^1.7.0",
       "history": "^4.10.1",
       "minimist": "^1.2.5",
+      "module-alias": "^2.2.2",
       "netlify-cli": "^2.40.0",
       "react": "^16.12.0",
       "react-dom": "^16.12.0",
+      "react-redux": "^7.2.0",
       "react-router-dom": "^5.2.0",
       "react-spring": "^8.0.27",
       "recharts": "^1.8.5",
+      "redux": "^4.0.5",
+      "redux-devtools-extension": "^2.13.8",
+      "redux-thunk": "^2.3.0",
       "styled-components": "^5.1.0"
     },
     "devDependencies": {
@@ -110,7 +107,8 @@ npm manifest:
       "moduleNameMapper": {
         "\\.(css|less|scss)$": "identity-obj-proxy"
       }
-    }
+    },
+    "proxy": "http://localhost:5000"
   }
 
 yarn manifest: 
@@ -3472,6 +3470,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
     integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
   
+  clsx@^1.1.0:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.0.tgz#62937c6adfea771247c34b54d320fb99624f5702"
+    integrity sha512-3avwM37fSK5oP6M5rQ9CNe99lwxhXDOeSWVPAOYF6OazUTgZCMb0yWlJpmdD74REy1gkEaFiub2ULv4fq9GUhA==
+  
   co@^4.6.0:
     version "4.6.0"
     resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -6402,7 +6405,7 @@ Lockfile:
       minimalistic-assert "^1.0.0"
       minimalistic-crypto-utils "^1.0.1"
   
-  hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0:
+  hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
     version "3.3.2"
     resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
     integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -8740,6 +8743,11 @@ Lockfile:
     dependencies:
       minimist "0.0.8"
   
+  module-alias@^2.2.2:
+    version "2.2.2"
+    resolved "https://registry.yarnpkg.com/module-alias/-/module-alias-2.2.2.tgz#151cdcecc24e25739ff0aa6e51e1c5716974c0e0"
+    integrity sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==
+  
   module-definition@^3.3.0:
     version "3.3.0"
     resolved "https://registry.yarnpkg.com/module-definition/-/module-definition-3.3.0.tgz#aae06d68c99c5f93841e59b8a4469b974956d4d4"
@@ -10337,6 +10345,17 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
     integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
   
+  react-redux@^7.2.0:
+    version "7.2.0"
+    resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.0.tgz#f970f62192b3981642fec46fd0db18a074fe879d"
+    integrity sha512-EvCAZYGfOLqwV7gh849xy9/pt55rJXPwmYvI4lilPM5rUT/1NxuuN59ipdBksRVSvz0KInbPnp4IfoXJXCqiDA==
+    dependencies:
+      "@babel/runtime" "^7.5.5"
+      hoist-non-react-statics "^3.3.0"
+      loose-envify "^1.4.0"
+      prop-types "^15.7.2"
+      react-is "^16.9.0"
+  
   react-resize-detector@^2.3.0:
     version "2.3.0"
     resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-2.3.0.tgz#57bad1ae26a28a62a2ddb678ba6ffdf8fa2b599c"
@@ -10591,6 +10610,16 @@ Lockfile:
     dependencies:
       balanced-match "^1.0.0"
   
+  redux-devtools-extension@^2.13.8:
+    version "2.13.8"
+    resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
+    integrity sha512-8qlpooP2QqPtZHQZRhx3x3OP5skEV1py/zUdMY28WNAocbafxdG2tRD1MWE7sp8obGMNYuLWanhhQ7EQvT1FBg==
+  
+  redux-thunk@^2.3.0:
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+    integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
+  
   redux@^3.6.0:
     version "3.7.2"
     resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
@@ -10600,6 +10629,14 @@ Lockfile:
       lodash-es "^4.2.1"
       loose-envify "^1.1.0"
       symbol-observable "^1.0.3"
+  
+  redux@^4.0.5:
+    version "4.0.5"
+    resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.5.tgz#4db5de5816e17891de8a80c424232d06f051d93f"
+    integrity sha512-VSz1uMAH24DM6MF72vcojpYPtrTUu3ByVWfPL1nPfVRb5mZVTve5GnNCUV53QM/BZ66xfWrm0CTWoM+Xlz8V1w==
+    dependencies:
+      loose-envify "^1.4.0"
+      symbol-observable "^1.2.0"
   
   reflect.ownkeys@^0.2.0:
     version "0.2.0"
@@ -11840,7 +11877,7 @@ Lockfile:
       has-flag "^4.0.0"
       supports-color "^7.0.0"
   
-  symbol-observable@^1.0.3, symbol-observable@^1.1.0:
+  symbol-observable@^1.0.3, symbol-observable@^1.1.0, symbol-observable@^1.2.0:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
     integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==

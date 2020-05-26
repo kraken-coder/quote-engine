@@ -13,12 +13,16 @@ import HomeNavbar from '../navbar/HomeNavbar'
 const Signin = ({authenticate}) => {
   const [view, setView] = useState('')
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [login, setLogin] = useState({
+email: '',
+passowrd: ''
+  })
+  const [register, setRegister] = useState({
+email: '',
+name: '',
+password: ''
+  })
 
-  const [sEmail, setSemail] = useState('')
-  const [sPassword, setSpassword] = useState('')
-  const [sName, setSname] = useState('')
 
   const ref = useRef()
 
@@ -30,39 +34,18 @@ const Signin = ({authenticate}) => {
 
   const handleFlip = type => setView(type)
 
-  const handleSignIn = e => {
+  const handleChange = (e, type) => {
 
     const value = e.target.value
     const name = e.target.name
-    switch (name) {
-      case 'email':
-        setEmail(value)
-        break
-      case 'password':
-        setPassword(value)
-      default:
-        return
-    }
+
+    type === 'login'
+    ? setLogin({...login, [name]: value})
+    : setRegister({...register, [name]: value})
+      
   }
 
-  const handleSignUp = e => {
-
-    const value = e.target.value
-    const name = e.target.name
-    switch (name) {
-      case 'email':
-        setSemail(value)
-        break
-      case 'password':
-        setSpassword(value)
-        break
-      case 'name':
-        setSname(value)
-        break
-      default:
-        return
-    }
-  }
+  
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -110,7 +93,7 @@ const Signin = ({authenticate}) => {
                 placeholder=" Name"
                 value={sName}
                 name="name"
-                onChange={e => handleSignUp(e)}
+                onChange={e => handleChange(e, 'join')}
               />
 
               <Input
@@ -118,7 +101,7 @@ const Signin = ({authenticate}) => {
                 placeholder=" Email"
                 name="email"
                 value={sEmail}
-                onChange={e => handleSignUp(e)}
+                onChange={e => handleChange(e, 'join')}
               />
 
               <Input
@@ -126,7 +109,7 @@ const Signin = ({authenticate}) => {
                 placeholder=" Password"
                 name="password"
                 value={sPassword}
-                onChange={e => handleSignUp(e)}
+                onChange={e => handleChange(e, 'join')}
               />
               <Button>Sign Up</Button>
             </Form>
@@ -142,7 +125,7 @@ const Signin = ({authenticate}) => {
                 placeholder=" Email"
                 value={email}
                 name="email"
-                onChange={e => handleSignIn(e)}
+                onChange={e => handleChange(e, 'login')}
               />
 
               <Input
@@ -150,7 +133,7 @@ const Signin = ({authenticate}) => {
                 placeholder=" Password"
                 value={password}
                 name="password"
-                onChange={e => handleSignIn(e)}
+                onChange={e => handleSignIn(e, 'login')}
               />
 
               <A href="#">Forgot your password?</A>

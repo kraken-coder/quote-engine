@@ -7,6 +7,7 @@ const BottomSection = () => {
 
 const Wrapper = styled.div`
   border-top: solid 5px #fff;
+  flex-grow: 1;
 `
 
 export default BottomSection

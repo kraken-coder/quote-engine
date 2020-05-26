@@ -7,10 +7,9 @@ import store from './state/store'
 
 const root = document.getElementById('app')
 ReactDom.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
 
-<Provider store={store}>
-<App />
-</Provider>,
-     
-
-root)
+  root,
+)

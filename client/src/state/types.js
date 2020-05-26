@@ -6,5 +6,3 @@ export const USER_LOGGED = 'USER_LOGGED'
 export const AUTH_ERROR = 'AUTH_ERROR'
 export const REGISTER_FAIL = 'REGISTER_FAIL'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
-
-

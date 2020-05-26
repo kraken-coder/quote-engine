@@ -40,20 +40,22 @@ const Sidebar = ({ routes }) => {
     <Wrapper>
       <Container>
         <TopSection />
-        <Inner>
-          <NavItems>
-            <Title>Overview</Title>
-            {overview}
-          </NavItems>
-          <NavItems>
-            <Title>Manage</Title>
-            {manage}
-          </NavItems>
-          <NavItems>
-            <Title>Account</Title>
-            {account}
-          </NavItems>
-        </Inner>
+        <Div>
+          <Inner>
+            <NavItems>
+              <Title>Overview</Title>
+              {overview}
+            </NavItems>
+            <NavItems>
+              <Title>Manage</Title>
+              {manage}
+            </NavItems>
+            <NavItems>
+              <Title>Account</Title>
+              {account}
+            </NavItems>
+          </Inner>
+        </Div>
         <BottomSection />
       </Container>
     </Wrapper>
@@ -67,19 +69,20 @@ height: 100vh;
 `
 
 const Inner = Styled.div`
-margin: 0  0  0 2em; 
 display: flex;
 flex-direction: column;
 `
+const Div = Styled.div`
+margin: 0  0  0 2em; 
+flex-grow: 3;
+
+`
 
 const Container = Styled.div`
-
-display: grid; 
-grid-template-columns: 1fr ;
-justify-content: space-between;
+display: flex; 
+flex-direction: column;
 
 
-;
 `
 
 const Title = Styled.h1`
@@ -100,7 +103,8 @@ margin-right: 15px;
 const NavItems = Styled.div`
  display: flex;
  flex-direction: column;
- margin: 1.5em  0 0 0;
+ margin: 1em  0 0 0;
 `
 
-export default Sidebar
+const memo = React.memo(Sidebar)
+export default memo

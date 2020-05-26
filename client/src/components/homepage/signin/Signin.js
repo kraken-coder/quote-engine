@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-
-
 
 import { connect } from 'react-redux'
 import { register, loadUser, loginAc } from '../../../state/actions/auth'
@@ -11,189 +8,172 @@ import { register, loadUser, loginAc } from '../../../state/actions/auth'
 import HomeNavbar from '../navbar/HomeNavbar'
 import Loader from '../../global/loader/Loader'
 
-
-
-
-const Signin = ({register, loginAc ,loadUser, history, auth: {isAuthenticated, loading}}) => {
-
-
-
+const Signin = ({
+  register,
+  loginAc,
+  loadUser,
+  history,
+  auth: { isAuthenticated, loading },
+}) => {
   const [view, setView] = useState('')
   const [login, setLogin] = useState({
-email: '',
-passowrd: ''
+    email: '',
+    passowrd: '',
   })
-
 
   const [join, setjoin] = useState({
-email: '',
-name: '',
-password: ''
+    email: '',
+    name: '',
+    password: '',
   })
-
 
   const ref = useRef()
 
   useEffect(() => {
     loadUser()
   }, [])
-    
-  useEffect(() => {
 
-    if(isAuthenticated) {
+  useEffect(() => {
+    if (isAuthenticated) {
       history.push('/admin/dashboard')
     }
-    if(!localStorage.token) {
+    if (!localStorage.token) {
       view === 'add'
-      ? ref.current.classList.add('right-panel-active')
-      : ref.current.classList.remove('right-panel-active')
+        ? ref.current.classList.add('right-panel-active')
+        : ref.current.classList.remove('right-panel-active')
     }
   }, [view, isAuthenticated, history])
-
-
-  
 
   const handleFlip = type => setView(type)
 
   const handleChange = (e, type) => {
-
     const value = e.target.value
     const name = e.target.name
 
     type === 'login'
-    ? setLogin({...login, [name]: value})
-    : setjoin({...join, [name]: value})
-      
+      ? setLogin({ ...login, [name]: value })
+      : setjoin({ ...join, [name]: value })
   }
 
   const handleSubmit = e => {
     e.preventDefault()
     const id = e.target.id
 
-    if(id === 'join') {
+    if (id === 'join') {
       const data = join
-      if (data.email !== '' && data.name !== '' && data.password !== "") {
+      if (data.email !== '' && data.name !== '' && data.password !== '') {
         register(data)
-        
       }
     } else {
-      
-        const data = login
-        if (data.email !== '' ||  data.password !== "") {
-          loginAc(data)
-          
-        }
-
+      const data = login
+      if (data.email !== '' || data.password !== '') {
+        loginAc(data)
+      }
     }
   }
 
   return (
     <>
-      { localStorage.token && !isAuthenticated 
-      
-      ? (
-       < Loader />
-      ): 
-      (
+      {localStorage.token && !isAuthenticated ? (
+        <Loader />
+      ) : (
         <>
-        <HomeNavbar />
-      <Wrapper>
-        <Container ref={ref} className="container">
-          <SignUpContainer className="sign-up-container">
-            <Form id="join" onSubmit={e => handleSubmit(e)}>
-              <Title>Create an account</Title>
+          <HomeNavbar />
+          <Wrapper>
+            <Container ref={ref} className="container">
+              <SignUpContainer className="sign-up-container">
+                <Form id="join" onSubmit={e => handleSubmit(e)}>
+                  <Title>Create an account</Title>
 
-              <Span>Leads management has nevar been easy</Span>
+                  <Span>Leads management has nevar been easy</Span>
 
-              <Input
-                type="text"
-                placeholder=" Name"
-                value={join.name}
-                name="name"
-                onChange={e => handleChange(e, 'join')}
-              />
+                  <Input
+                    type="text"
+                    placeholder=" Name"
+                    value={join.name}
+                    name="name"
+                    onChange={e => handleChange(e, 'join')}
+                  />
 
-              <Input
-                type="text"
-                placeholder=" Email"
-                name="email"
-                value={join.email}
-                onChange={e => handleChange(e, 'join')}
-              />
+                  <Input
+                    type="text"
+                    placeholder=" Email"
+                    name="email"
+                    value={join.email}
+                    onChange={e => handleChange(e, 'join')}
+                  />
 
-              <Input
-                type="password"
-                placeholder=" Password"
-                name="password"
-                value={join.password}
-                onChange={e => handleChange(e, 'join')}
-              />
-              <Button>Sign Up</Button>
-            </Form>
-          </SignUpContainer>
-          <SignInContainer className="sign-in-container">
-            <Form id="login" onSubmit={e => handleSubmit(e)}>
-              <Title>Sign IN</Title>
+                  <Input
+                    type="password"
+                    placeholder=" Password"
+                    name="password"
+                    value={join.password}
+                    onChange={e => handleChange(e, 'join')}
+                  />
+                  <Button>Sign Up</Button>
+                </Form>
+              </SignUpContainer>
+              <SignInContainer className="sign-in-container">
+                <Form id="login" onSubmit={e => handleSubmit(e)}>
+                  <Title>Sign IN</Title>
 
-              <Span>Login to your account </Span>
+                  <Span>Login to your account </Span>
 
-              <Input
-                type="text"
-                placeholder=" Email"
-                value={login.email}
-                name="email"
-                onChange={e => handleChange(e, 'login')}
-              />
+                  <Input
+                    type="text"
+                    placeholder=" Email"
+                    value={login.email}
+                    name="email"
+                    onChange={e => handleChange(e, 'login')}
+                  />
 
-              <Input
-                type="password"
-                placeholder=" Password"
-                value={login.password}
-                name="password"
-                onChange={e => handleChange(e, 'login')}
-              />
+                  <Input
+                    type="password"
+                    placeholder=" Password"
+                    value={login.password}
+                    name="password"
+                    onChange={e => handleChange(e, 'login')}
+                  />
 
-              <A href="#">Forgot your password?</A>
-              {/* <Link to='/admin' type='submit'> */}
-              <Button>Sign In</Button>
-              {/* </Link> */}
-            </Form>
-          </SignInContainer>
-          <OverlayWrapper className="overlay-container">
-            <Overlay className="overlay">
-              <div className="overlay-panel overlay-left">
-                <h1>Welcome Back!</h1>
-                <p>To keep connected with us please login with your personal info</p>
-                <Sbutton
-                  className="ghost"
-                  id="signIn"
-                  onClick={() => handleFlip('rm')}
-                >
-                  Sign In
-                </Sbutton>
-              </div>
-              <div className="overlay-panel overlay-right">
-                <h1>Hello, Friend!</h1>
-                <p>Enter your personal details and start journey with us</p>
-                <Sbutton
-                  className="ghost"
-                  id="signUp"
-                  onClick={() => handleFlip('add')}
-                >
-                  Sign Up
-                </Sbutton>
-              </div>
-            </Overlay>
-          </OverlayWrapper>
-        </Container>
-      </Wrapper>
+                  <A href="#">Forgot your password?</A>
+                  {/* <Link to='/admin' type='submit'> */}
+                  <Button>Sign In</Button>
+                  {/* </Link> */}
+                </Form>
+              </SignInContainer>
+              <OverlayWrapper className="overlay-container">
+                <Overlay className="overlay">
+                  <div className="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>
+                      To keep connected with us please login with your personal info
+                    </p>
+                    <Sbutton
+                      className="ghost"
+                      id="signIn"
+                      onClick={() => handleFlip('rm')}
+                    >
+                      Sign In
+                    </Sbutton>
+                  </div>
+                  <div className="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <Sbutton
+                      className="ghost"
+                      id="signUp"
+                      onClick={() => handleFlip('add')}
+                    >
+                      Sign Up
+                    </Sbutton>
+                  </div>
+                </Overlay>
+              </OverlayWrapper>
+            </Container>
+          </Wrapper>
         </>
-      )
-      
-    
-    
-    }
-      </>
+      )}
+    </>
   )
 }
 
@@ -349,17 +329,15 @@ const Overlay = styled.div`
   transition: transform 0.6s ease-in-out;
 `
 
-
-const mapStateToProps  = state => ({
-  auth: state.auth
+const mapStateToProps = state => ({
+  auth: state.auth,
 })
 
 const mapDispatchToProps = {
-register,
-loadUser,
-loginAc
+  register,
+  loadUser,
+  loginAc,
 }
-
 
 const exports = React.memo(Signin)
 export default connect(mapStateToProps, mapDispatchToProps)(exports)

@@ -5,18 +5,26 @@ import { Link } from 'react-router-dom'
 
 
 import { connect } from 'react-redux'
-import { register } from '../../../state/actions/auth'
+import { register, loadUser } from '../../../state/actions/auth'
 
 // comp
 import HomeNavbar from '../navbar/HomeNavbar'
+import Loader from '../../global/loader/Loader'
 
-const Signin = ({register}) => {
+
+
+
+const Signin = ({register, loadUser, history, auth: {isAuthenticated, loading}}) => {
+
+
+
   const [view, setView] = useState('')
-
   const [login, setLogin] = useState({
 email: '',
 passowrd: ''
   })
+
+
   const [join, setjoin] = useState({
 email: '',
 name: '',
@@ -27,10 +35,23 @@ password: ''
   const ref = useRef()
 
   useEffect(() => {
-    view === 'add'
+    loadUser()
+  }, [])
+    
+  useEffect(() => {
+
+    if(isAuthenticated) {
+      history.push('/admin/dashboard')
+    }
+    if(!loading) {
+      view === 'add'
       ? ref.current.classList.add('right-panel-active')
       : ref.current.classList.remove('right-panel-active')
-  }, [view])
+    }
+  }, [view, isAuthenticated, history])
+
+
+  
 
   const handleFlip = type => setView(type)
 
@@ -53,6 +74,7 @@ password: ''
       const data = join
       if (data.email !== '' || data.name !== '' || data.password !== "") {
         register(data)
+        
       }
     } else {
       const data = login
@@ -62,7 +84,14 @@ password: ''
 
   return (
     <>
-      <HomeNavbar />
+      {!isAuthenticated
+      
+      ? (
+       < Loader />
+      ): 
+      (
+        <>
+        <HomeNavbar />
       <Wrapper>
         <Container ref={ref} className="container">
           <SignUpContainer className="sign-up-container">
@@ -116,7 +145,7 @@ password: ''
                 placeholder=" Password"
                 value={login.password}
                 name="password"
-                onChange={e => handleSignIn(e, 'login')}
+                onChange={e => handleChange(e, 'login')}
               />
 
               <A href="#">Forgot your password?</A>
@@ -153,6 +182,12 @@ password: ''
           </OverlayWrapper>
         </Container>
       </Wrapper>
+        </>
+      )
+      
+    
+    
+    }
       </>
   )
 }
@@ -310,12 +345,15 @@ const Overlay = styled.div`
 `
 
 
-
+const mapStateToProps  = state => ({
+  auth: state.auth
+})
 
 const mapDispatchToProps = {
-register  
+register,
+loadUser 
 }
 
 
 const exports = React.memo(Signin)
-export default connect(null, mapDispatchToProps)(exports)
+export default connect(mapStateToProps, mapDispatchToProps)(exports)

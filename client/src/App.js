@@ -2,7 +2,6 @@ import React from 'react'
 import { Router, Switch, Route, Redirect } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import { createBrowserHistory } from 'history'
-import { connect } from 'react-redux'
 
 
 
@@ -10,13 +9,19 @@ import { connect } from 'react-redux'
 import Admin from './views/Admin'
 import Signin from './components/homepage/signin'
 
-
 //  routing
 import PrivateRoute from './routing/PrivateRoute'
 
+import setAuthToken from './utils/setAuthToken'
+
+
 import './App.css'
 
-const App = ({auth: {isAuthenticated}}) => {
+if(localStorage.token) {
+  setAuthToken(localStorage.token)
+}
+
+const App = () => {
   const history = createBrowserHistory()
   return (
     <>
@@ -25,7 +30,7 @@ const App = ({auth: {isAuthenticated}}) => {
         <Switch>
 
           
-          <PrivateRoute path="/admin" auth={isAuthenticated} component={Admin} />
+          <PrivateRoute path="/admin"  component={Admin} />
           <Route path="/signin" component={Signin} />
           <Redirect from="/" to="/admin/dashboard" />
         </Switch>
@@ -55,12 +60,9 @@ color: white;
 }
 `
 
-const mapStateToProps = (state) => ({
-  auth: state.auth
-})
 
 
 
 
 
-export default connect(mapStateToProps)(App)
+export default  App

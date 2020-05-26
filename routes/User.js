@@ -20,23 +20,18 @@ check('name').not().isEmpty()
 router.post('/', validation,  async (req, res) => {
       const err = validationResult(req)
       if(!err.isEmpty() ) {
-          res.json({ error: err.array() }).status(400)
+          res.status(400).json({ error: err.array() })
           return
       }
       const { email, name, password} = req.body
 
-      let user = await UserSchema.findOne({email})
-      if(user) {
-        res.json({msg: 'user already exist'}).status(400)
-        return
-      }
-
+     
 
      try {
       let user = await UserSchema.findOne({email})
       if(user) {
-        res.json({msg: 'user already exist'}).status(400)
-        return
+        return res.status(400).json({msg: 'user already exist'})
+        
       }
 
 

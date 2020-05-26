@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 
 import { connect } from 'react-redux'
-import { register, loadUser } from '../../../state/actions/auth'
+import { register, loadUser, loginAc } from '../../../state/actions/auth'
 
 // comp
 import HomeNavbar from '../navbar/HomeNavbar'
@@ -14,7 +14,7 @@ import Loader from '../../global/loader/Loader'
 
 
 
-const Signin = ({register, loadUser, history, auth: {isAuthenticated, loading}}) => {
+const Signin = ({register, loginAc ,loadUser, history, auth: {isAuthenticated, loading}}) => {
 
 
 
@@ -43,7 +43,7 @@ password: ''
     if(isAuthenticated) {
       history.push('/admin/dashboard')
     }
-    if(!loading) {
+    if(!localStorage.token) {
       view === 'add'
       ? ref.current.classList.add('right-panel-active')
       : ref.current.classList.remove('right-panel-active')
@@ -72,19 +72,24 @@ password: ''
 
     if(id === 'join') {
       const data = join
-      if (data.email !== '' || data.name !== '' || data.password !== "") {
+      if (data.email !== '' && data.name !== '' && data.password !== "") {
         register(data)
         
       }
     } else {
-      const data = login
+      
+        const data = login
+        if (data.email !== '' ||  data.password !== "") {
+          loginAc(data)
+          
+        }
 
     }
   }
 
   return (
     <>
-      {!isAuthenticated
+      { localStorage.token && !isAuthenticated 
       
       ? (
        < Loader />
@@ -351,7 +356,8 @@ const mapStateToProps  = state => ({
 
 const mapDispatchToProps = {
 register,
-loadUser 
+loadUser,
+loginAc
 }
 
 

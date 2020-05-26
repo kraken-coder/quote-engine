@@ -25,7 +25,7 @@ router.get('/',  auth,  async (req, res) => {
         const user = await UserSchema.findById(req.user.id).select('-password')
         res.json(user)
     } catch (error) {
-        res.json('server error').status(500)
+        res.status(500).json('server error')
     }
 
 })
@@ -72,6 +72,7 @@ router.post('/', validation, async (req, res) => {
 
     } catch (error) {
         console.error(error)
+        res.status(500)
     }
  
  

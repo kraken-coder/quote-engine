@@ -7,7 +7,11 @@
 div.contain {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    transform: translate(-30%, -50%);
 }
 div.contain > div {
 	width: 3vw;
@@ -17,12 +21,9 @@ div.contain > div {
 	background-image: linear-gradient(145deg, rgba(255,255,255,0.5) 0%, rgba(0,0,0,0) 100%);
 	animation: bounce 1.5s 0.5s linear infinite;
 }
-.yellow {
-	background-color: var(--yellow);
-}
 
 .red {
-	background-color: var(--red);
+	background-color: var(--pink);
 	animation-delay: 0.1s;
 }
 

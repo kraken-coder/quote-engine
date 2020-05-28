@@ -74,7 +74,7 @@ const Signin = ({
 
   return (
     <>
-      {localStorage.token && !isAuthenticated ? (
+      {localStorage.token && isAuthenticated ? (
         <Loader />
       ) : (
         <>

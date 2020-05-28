@@ -17,7 +17,7 @@ export const loadUser = () => async dispatch => {
     setAuthToken(localStorage.token)
   }
   try {
-    const res = await axios.get('http://localhost:5000/api/auth')
+    const res = await axios.get('http://localhost:3000/api/auth')
 
     dispatch({
       type: USER_LOGGED,
@@ -40,7 +40,7 @@ export const register = formData => async dispatch => {
       },
     }
     const res = await axios.post(
-      'http://localhost:5000/api/register',
+      'http://localhost:3000/api/register',
       formData,
       config,
     )
@@ -49,7 +49,9 @@ export const register = formData => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.data,
     })
+
     loadUser()
+    
   } catch (error) {
     dispatch({
       type: REGISTER_FAIL,
@@ -67,7 +69,7 @@ export const loginAc = formData => async dispatch => {
         'Content-Type': 'application/json',
       },
     }
-    const res = await axios.post('http://localhost:5000/api/auth', formData, config)
+    const res = await axios.post('http://localhost:3000/api/auth', formData, config)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,

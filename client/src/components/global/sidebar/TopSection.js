@@ -6,7 +6,7 @@ const TopSection = ({ auth: { user } }) => {
   return (
     <Wrapper>
       <h2>Welcome!</h2>
-      <h3>{user.name}</h3>
+      <h3>hello</h3>
     </Wrapper>
   )
 }

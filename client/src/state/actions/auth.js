@@ -26,7 +26,6 @@ export const loadUser = () => async dispatch => {
 
     console.log('loaded from ', window.location.pathname)
   } catch (error) {
-    console.log( window.location.pathname, error)
     dispatch({
       type: AUTH_ERROR,
     })
@@ -79,10 +78,12 @@ export const loginAc = formData => async dispatch => {
     })
     loadUser()
   } catch (error) {
+    console.log(error)
     dispatch({
       type: LOGIN_FAIL,
       payload: error.response.data.msg,
     })
+    console.log(error)
   }
 
   return 'done'

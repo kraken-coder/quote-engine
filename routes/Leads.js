@@ -1,6 +1,5 @@
 const express = require('express')
 const {check, validationResult}  = require('express-validator')
-const mongoose = require('mongoose')
 
 const router = express.Router()
 
@@ -18,13 +17,62 @@ const validation   = [
 ]
 
 
-router.post('/', validation, async (req, res) => {
-const err = validationResult(req.body)
-if(!err.isEmpty()) {
-    return res.status(400).json(err.array())
-}
+router.get('/', auth,  async (req, res) => {
+   
+    try {
+        
+        const leads =  await LeadSchema.find({user: req.user.id})
+        
+        res.json(leads)
 
+    } catch (error) {
+        
+        res.status(500).json({msg: 'Server error'})
+        
+        console.error(error)
+    }
 
+    return
+})
+
+router.post('/', [auth, validation], async (req, res) => {
+
+    const err = validationResult(req.body)
+    
+    if(!err.isEmpty()) {
+        return res.status(400).json(err.array())
+    }
+
+    const { leadFName,
+        leadLName,
+        job,
+        age,
+        converted,
+        interest}  = req.body
+
+    const newLead =  new LeadSchema({
+        leadFName,
+        leadLName,
+        job,
+        age,
+        converted,
+        interest,
+        user: req.user.id
+    })
+
+    try {
+
+        await newLead.save()
+
+        res.json({msg: 'Added lead succesfully'})
+
+    } catch (error) {
+        res.status(500).json({msg: 'server error'})
+
+        console.error(error)
+    }
+
+    return
 })
 
 

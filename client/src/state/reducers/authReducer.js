@@ -47,6 +47,7 @@ export default (state = initialState, action) => {
     case LOGIN_FAIL:
     case REGISTER_FAIL:
       localStorage.removeItem('token')
+      console.log(action.payload)
       return {
         ...state,
         token: null,

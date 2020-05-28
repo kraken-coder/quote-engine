@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const auth = require('../middleware/auth')
 
-const UserSchema = require('../models/Register')
+const RegSchema = require('../models/Register')
 const router  = express.Router()
 
 const validation = [
@@ -22,7 +22,7 @@ const validation = [
 router.get('/',  auth,  async (req, res) => {
     
     try {
-        const user = await UserSchema.findById(req.user.id).select('-password')
+        const user = await RegSchema.findById(req.user.id).select('-password')
         res.json(user)
     } catch (error) {
         res.status(500).json('server error')
@@ -42,7 +42,7 @@ router.post('/', validation, async (req, res) => {
     const {email, password} = req.body
  
     try {
-        const user =  await UserSchema.findOne({email})
+        const user =  await RegSchema.findOne({email})
         const isPassword = await bcrypt.compare(password, user.password)
 
         if(!user) {

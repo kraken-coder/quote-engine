@@ -14,6 +14,7 @@ app.use(cors())
 //  routes
 app.use('/api/register', require('./routes/User'))
 app.use('/api/auth', require('./routes/auth'))
+app.use('/api/leads', require('./routes/Leads'))
 
 
 // funcs

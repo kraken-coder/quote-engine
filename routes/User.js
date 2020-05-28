@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 
 
-const UserSchema = require('../models/Register')
+const RegSchema = require('../models/Register')
 const router  = express.Router()
 
 
@@ -28,14 +28,14 @@ router.post('/', validation,  async (req, res) => {
      
 
      try {
-      let user = await UserSchema.findOne({email})
+      let user = await RegSchema.findOne({email})
       if(user) {
         return res.status(400).json({msg: 'user already exist'})
         
       }
 
 
-      user = new UserSchema({
+      user = new RegSchema({
         name,
         email,
         password

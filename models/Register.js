@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
 
-const UserSchema  =  new schema ({
+const RegSchema  =  new schema ({
 name: {
     type: String,
     required: true
@@ -26,4 +26,4 @@ createdAt: {
 
 
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('Registration', RegSchema)

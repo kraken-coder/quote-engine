@@ -23,7 +23,10 @@ export const loadUser = () => async dispatch => {
       type: USER_LOGGED,
       payload: res.data,
     })
+
+    console.log('loaded from ', window.location.pathname)
   } catch (error) {
+    console.log( window.location.pathname, error)
     dispatch({
       type: AUTH_ERROR,
     })

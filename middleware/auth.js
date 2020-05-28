@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
         return res.status(401).json({msg : "Authoriztion denied"})
     }
     const secret = process.env.secret
-
+    
     try {
        const decoded = jwt.verify(token, secret) 
        req.user  = decoded.user

@@ -1,16 +1,26 @@
 //  core modules
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Styled from 'styled-components'
-//  utilss
+
+import { connect } from 'react-redux'
+import {loadUser} from '../state/actions/auth'
+ //  utilss
 import { routes, accountRoutes, manageRoutes, overviewRoutes } from '../utils/routes'
 
 //  components
 import Sidebar from '../components/global/sidebar'
 import Navbar from '../components/global/navabr'
 
-const Admin = () => {
+const Admin = ({loadUser}) => {
+
+
+useEffect(() => {
+  loadUser()
+}, [])
+
+
   const routeList = (
     <Switch>
       {routes.map(({ path, component, name }) => (
@@ -65,4 +75,11 @@ const Wrapper = Styled.div`
 
  `
 
-export default Admin
+
+ 
+ 
+ const mapDispatchToProps = {
+  loadUser
+ }
+ 
+export default connect(null,mapDispatchToProps)(Admin)

@@ -7,11 +7,15 @@ import {
 
 const initialState = {
     leads: [],
+    leadsData: {
+
+    },
     recentAdded: {}
 }
 
 export default ( state = initialState, action) => {
         switch (action.type) {
+
             case GET_LEADS:
                 return{
                     ...state,

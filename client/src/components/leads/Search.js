@@ -13,31 +13,27 @@ const SearchBar = () => {
 
   return (
     <SearchContainer>
-    <BarContainer>
+      <BarContainer>
         <BarTitle>Search</BarTitle>
         <Bar
-        onChange={e => handleChange(e)}
-        placeholder="search something here"
-        type="text"
-        value={value}
+          onChange={e => handleChange(e)}
+          placeholder="search something here"
+          type="text"
+          value={value}
         />
         <Search>{iconWithProp('lg')}</Search>
-     </BarContainer>
- </SearchContainer>
+      </BarContainer>
+    </SearchContainer>
   )
 }
-
-
-
-
 
 const SearchContainer = styled.div`
   background: #fff;
   border-radius: 30px;
-//   filter: blur(4px);
+  //   filter: blur(4px);
 `
 const Bar = styled.input`
-margin-left: 20px;
+  margin-left: 20px;
   border: none;
   width: 100%;
   height: 40px;
@@ -60,7 +56,7 @@ const BarTitle = styled.h3`
 `
 
 const Search = styled.button`
-margin-right: 30px !important;
+  margin-right: 30px !important;
   outline: none;
   border: none;
   font-size: 25px;

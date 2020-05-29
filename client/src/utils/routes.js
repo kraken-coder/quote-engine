@@ -1,20 +1,18 @@
-import React, {lazy} from 'react'
+import React, { lazy } from 'react'
 
-const  Analytics  =  lazy(() => import('../views/analytics'))
+const Analytics = lazy(() => import('../views/analytics'))
 
-const  Customers  =  lazy(() => import('../views/customers'))
+const Customers = lazy(() => import('../views/customers'))
 
-const  Dashboard  =  lazy(() => import('../views/Dashboard/'))
+const Dashboard = lazy(() => import('../views/Dashboard/'))
 
-const  Leads  =  lazy(() => import('../views/leads'))
+const Leads = lazy(() => import('../views/leads'))
 
-const  Profile  =  lazy(() => import('../views/profile'))
+const Profile = lazy(() => import('../views/profile'))
 
-const  Quotes  =  lazy(() => import('../views/quotes'))
+const Quotes = lazy(() => import('../views/quotes'))
 
-const  Settings  =  lazy(() => import('../views/settings'))
-
-
+const Settings = lazy(() => import('../views/settings'))
 
 // icons
 

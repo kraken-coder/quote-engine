@@ -133,7 +133,6 @@ const Signin = ({
                     value={login.password}
                     name="password"
                     onChange={e => handleChange(e, 'login')}
-                    
                   />
 
                   <A href="#">Forgot your password?</A>

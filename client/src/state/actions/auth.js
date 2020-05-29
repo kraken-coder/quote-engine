@@ -53,7 +53,6 @@ export const register = formData => async dispatch => {
     })
 
     loadUser()
-    
   } catch (error) {
     dispatch({
       type: REGISTER_FAIL,

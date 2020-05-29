@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react'
+import React, { Suspense } from 'react'
 import { Router, Switch, Route, Redirect } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import { createBrowserHistory } from 'history'
@@ -22,17 +22,16 @@ const App = () => {
   const history = createBrowserHistory()
   return (
     <>
-    <Suspense fallback={<div>LOading</div>}>
-      <Router history={history}>
-        <GlobalStyle />
-        <Switch>
-          <PrivateRoute path="/admin" component={Admin} />
-          <Route path="/signin" component={Signin} />
-          <Redirect from="/" to="/admin/dashboard" />
-        </Switch>
-      </Router>
+      <Suspense fallback={<div>LOading</div>}>
+        <Router history={history}>
+          <GlobalStyle />
+          <Switch>
+            <PrivateRoute path="/admin" component={Admin} />
+            <Route path="/signin" component={Signin} />
+            <Redirect from="/" to="/admin/dashboard" />
+          </Switch>
+        </Router>
       </Suspense>
-    
     </>
   )
 }

@@ -8,4 +8,3 @@ export const REGISTER_FAIL = 'REGISTER_FAIL'
 export const GET_LEADS = 'GET_LEADS'
 export const ADD_LEADS = 'ADD_LEADS'
 export const DELETE_LEAD = 'DELETE_LEAD'
-

@@ -6,7 +6,7 @@ const TopSection = ({ auth: { user } }) => {
   return (
     <Wrapper>
       <ImgWrapper>
-      <Image />
+        <Image />
       </ImgWrapper>
       <h2>Welcome!</h2>
       <h3>hello</h3>
@@ -29,7 +29,5 @@ const Image = Styled.img`
 const mapStateToProps = state => ({
   auth: state.auth,
 })
-
-
 
 export default connect(mapStateToProps)(TopSection)

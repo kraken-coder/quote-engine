@@ -24,7 +24,7 @@ const Dashboard = () => {
         <Heading size="10px">Analytics</Heading>
 
         <Overview>
-          <Card color="#01adfd" width="200px" height="250px">
+          <Card color="#01adfd" width="200px" height="250px" shadow>
             <CardBox>
               <Icon>{leadIconWithProps('lg')}</Icon>
               <Number>
@@ -33,7 +33,7 @@ const Dashboard = () => {
               <CardTitle>Total Leads</CardTitle>
             </CardBox>
           </Card>
-          <Card color="#dc5ac7" width="200px" height="250px">
+          <Card shadow color="#dc5ac7" width="200px" height="250px">
             <CardBox>
               <Icon>{quoteIconWithProp('lg')}</Icon>
               <Number>
@@ -42,7 +42,7 @@ const Dashboard = () => {
               <CardTitle>Total Quotes</CardTitle>
             </CardBox>
           </Card>
-          <Card color="#ae83b9" width="200px" height="250px">
+          <Card  shadow color="#ae83b9" width="200px" height="250px">
             <CardBox>
               <Icon>{customerIconWithProp('lg')}</Icon>
               <Number>

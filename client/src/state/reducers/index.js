@@ -7,5 +7,5 @@ import user from './User'
 export default combineReducers({
   auth: authReducer,
   user: user,
-  data: dataReducer
+  data: dataReducer,
 })

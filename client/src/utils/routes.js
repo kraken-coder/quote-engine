@@ -1,15 +1,24 @@
-import Analytics from '../views/analytics'
-import Customers from '../views/customers'
-import Dashboard from '../views/Dashboard/'
-import Leads from '../views/leads'
-import Profile from '../views/profile'
-import Quotes from '../views/quotes'
-import Settings from '../views/settings'
+import React, {lazy} from 'react'
+
+const  Analytics  =  lazy(() => import('../views/analytics'))
+
+const  Customers  =  lazy(() => import('../views/customers'))
+
+const  Dashboard  =  lazy(() => import('../views/Dashboard/'))
+
+const  Leads  =  lazy(() => import('../views/leads'))
+
+const  Profile  =  lazy(() => import('../views/profile'))
+
+const  Quotes  =  lazy(() => import('../views/quotes'))
+
+const  Settings  =  lazy(() => import('../views/settings'))
+
+
 
 // icons
 
 import {
-  searchIcon,
   profileIcon,
   settingsIcon,
   leadsIcon,

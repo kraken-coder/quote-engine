@@ -1,12 +1,16 @@
 import React, {useEffect} from 'react'
 import Axios from 'axios'
 
-const Leads = () => {
+import { connect } from 'react-redux'
+import {getLeads} from '../../state/actions/data'
+
+const Leads = ({getLeads, data:{leads}}) => {
+
 const [change, setChange] = React.useState(1)
 
    useEffect(() => {
-    get()
-  }, [change])
+    getLeads()
+  }, [])
 
 
   const get = async () => {
@@ -65,4 +69,14 @@ const [change, setChange] = React.useState(1)
          </div>
 }
 
-export default Leads
+
+const mapStateToProps = (state) => ({
+  data: state.data
+})
+
+
+const mapDispatchToProps = {
+  getLeads
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Leads)

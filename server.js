@@ -11,6 +11,7 @@ app.use(express.urlencoded({extended: false}))
 app.use(cors())
 
 
+
 //  routes
 app.use('/api/register', require('./routes/User'))
 app.use('/api/auth', require('./routes/auth'))

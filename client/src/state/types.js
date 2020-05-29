@@ -5,4 +5,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const USER_LOGGED = 'USER_LOGGED'
 export const AUTH_ERROR = 'AUTH_ERROR'
 export const REGISTER_FAIL = 'REGISTER_FAIL'
-export const LOGIN_FAIL = 'LOGIN_FAIL'
+export const GET_LEADS = 'GET_LEADS'
+export const ADD_LEADS = 'ADD_LEADS'
+export const DELETE_LEAD = 'DELETE_LEAD'
+

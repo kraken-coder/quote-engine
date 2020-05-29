@@ -61,7 +61,7 @@ grid-template-columns: 1fr 5fr;
 `
 
 const Main = Styled.div`
-border-left: solid 10px #01adfd;
+// border-left: solid 10px #01adfd;
 margin-left: 10px;
 
 border-top-left-radius: 4px;

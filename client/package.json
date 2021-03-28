@@ -34,7 +34,7 @@
     "history": "^4.10.1",
     "minimist": "^1.2.5",
     "module-alias": "^2.2.2",
-    "netlify-cli": "^2.40.0",
+    "netlify-cli": "^2.71.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",
